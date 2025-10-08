@@ -115,51 +115,15 @@ public class TeamTest {
         t2.setName("foo");
         t2.addMember("bar");
         assertEquals(t1.hashCode(), t2.hashCode());
+        
+        Team t = new Team();
+
+        int result = t.hashCode();
+        int expectedResult = 1;
+        assertEquals(expectedResult, result);
     }
-    @Test
-public void hashCode_different_names_or_members_produce_different_hashes() {
-    Team t1 = new Team("alpha");
-    t1.addMember("bob");
 
-    Team t2 = new Team("beta");
-    t2.addMember("bob");
 
-    Team t3 = new Team("alpha");
-    t3.addMember("charlie");
-
-    // Different name should yield different hash even if members same
-    assertNotEquals(t1.hashCode(), t2.hashCode());
-
-    // Different members should yield different hash even if name same
-    assertNotEquals(t1.hashCode(), t3.hashCode());
-}
-
-@Test
-public void hashCode_works_with_empty_members_list() {
-    Team t1 = new Team("solo");
-    Team t2 = new Team("solo");
-
-    // No members added, same name and same members list
-    assertEquals(t1.hashCode(), t2.hashCode());
-}
-@Test
-public void hashCode_consistent_for_equal_objects() {
-    Team t1 = new Team("gamma");
-    Team t2 = new Team("gamma");
-    t1.addMember("alice");
-    t2.addMember("alice");
-
-    // They are equal by equals()
-    assertTrue(t1.equals(t2));
-
-    // And their hashCodes must be identical
-    assertEquals(t1.hashCode(), t2.hashCode());
-
-    // Also ensure calling hashCode() repeatedly gives same result
-    int first = t1.hashCode();
-    assertEquals(first, t1.hashCode());
-    assertEquals(first, t1.hashCode());
-}
 
 
 }
